@@ -7,7 +7,7 @@ import { Container, Row } from "react-bootstrap";
 import NavigationBar from "./components/NavigationBar";
 import Welcome from "./components/Welcome";
 import Footer from "./components/Footer";
-import Product from "./components/Person";
+import Person from "./components/Person";
 import People from "./components/People";
 
 const client = new ApolloClient({
@@ -29,7 +29,6 @@ function App() {
             <Switch>
               <Route path="/" exact component={Welcome} />
               <Route path="/add" exact component={Person} />
-              <Route path="/edit/:id" exact component={Product} />
               <Route path="/list" exact component={People} />
             </Switch>
           </Row>

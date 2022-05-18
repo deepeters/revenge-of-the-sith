@@ -10,6 +10,18 @@ import { Card, Table, ButtonGroup, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
+const PEOPLE_QUERY = gql`
+  {
+    people {
+      name
+      mass
+      height
+      gender
+      homeword
+    }
+  }
+`;
+
 class ProductList extends React.Component {
   constructor(props) {
     super(props);
@@ -27,20 +39,6 @@ class ProductList extends React.Component {
       });
   }
 
-  deleteProduct = (productId) => {
-    axios.delete("https://supermatt-backend.herokuapp.com/products/" + productId).then((response) => {
-      if (response.data != null) {
-        this.setState({ show: true });
-        setTimeout(() => this.setState({ show: false }), 3000);
-        this.setState({
-          products: this.state.products.filter((product) => product.id !== productId),
-        });
-      } else {
-        this.setState({ show: false });
-      }
-    });
-  };
-
   render() {
     return (
       <div>
@@ -50,43 +48,39 @@ class ProductList extends React.Component {
         <Card className="border border-dark bg-dark text-white">
           <Card.Header>
             <FontAwesomeIcon icon={faList} />
-            Product List
+            <People></People> List
           </Card.Header>
           <Card.Body>
             <Table striped bordered hover variant="dark">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Product Name</th>
-                  <th>Product Description</th>
-                  <th>Product Category</th>
-                  <th>Actions</th>
+                  <th>Name</th>
+                  <th>Mass</th>
+                  <th>Height</th>
+                  <th>Gender</th>
+                  <th>Homeworld</th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
-                {this.state.products.length === 0 ? (
+                {this.state.people.length === 0 ? (
                   <tr align="center">
-                    <td colSpan="6"> No Products Available</td>
+                    <td colSpan="6"> No People Available</td>
                   </tr>
                 ) : (
-                  this.state.products.map((product) => (
+                  this.state.people.map((people) => (
                     <tr key={product.id}>
-                      <td>{product.id}</td>
-                      <td>{product.name}</td>
-                      <td>{product.description}</td>
-                      <td>{product.category}</td>
+                      <td>{people.name}</td>
+                      <td>{people.mass}</td>
+                      <td>{people.height}</td>
+                      <td>{people.gender}</td>
+                      <td>{people.homeword}</td>
+                      <td>Details</td>
                       <td>
                         <ButtonGroup>
-                          <Link to={"edit/" + product.id} className="btn btn-sm btn-outline-primary">
+                          <Link to={"details/" + product.id} className="btn btn-sm btn-outline-primary">
                             <FontAwesomeIcon icon={faEdit} />
                           </Link>{" "}
-                          <Button
-                            size="sm"
-                            variant="outline-danger"
-                            onClick={this.deleteProduct.bind(this, product.id)}
-                          >
-                            <FontAwesomeIcon icon={faTrash} />
-                          </Button>
                         </ButtonGroup>
                       </td>
                     </tr>
