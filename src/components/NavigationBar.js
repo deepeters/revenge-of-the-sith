@@ -11,8 +11,9 @@ class NavigationBar extends React.Component {
           <img
             alt="cart"
             src="https://icons-for-free.com/iconfiles/png/512/hunter+robot+spacecraft+starwars+icon-1320166696320991237.png"
+            width={100}
           ></img>
-          Super Matt
+          Star Wars
         </Link>
         <Nav className="me-auto">
           <Link to={""} className="nav-link">
