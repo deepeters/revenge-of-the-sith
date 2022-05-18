@@ -28,7 +28,7 @@ function App() {
           <Row>
             <Switch>
               <Route path="/" exact component={Welcome} />
-              <Route path="/add" exact component={Person} />
+              <Route path="/details" exact component={Person} />
               <Route path="/list" exact component={People} />
             </Switch>
           </Row>

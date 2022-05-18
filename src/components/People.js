@@ -4,6 +4,8 @@ import MyToast from "./MyToast";
 
 import axios from "axios";
 
+import { useQuery, gql } from "@apollo/client";
+
 import { Link } from "react-router-dom";
 
 import { Card, Table, ButtonGroup, Button } from "react-bootstrap";
@@ -22,44 +24,42 @@ const PEOPLE_QUERY = gql`
   }
 `;
 
-class ProductList extends React.Component {
+const { data, loading, error } = useQuery(PEOPLE_QUERY);
+
+class People extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
+      people: [],
     };
   }
 
-  componentDidMount() {
-    axios
-      .get("https://supermatt-backend.herokuapp.com/products")
-      .then((response) => response.data)
-      .then((data) => {
-        this.setState({ products: data });
-      });
+  if(loading) {
+    return "Loading...";
+  }
+  if(error) {
+    return <pre>{error.message}</pre>;
   }
 
   render() {
     return (
       <div>
-        <div style={{ display: this.state.show ? "block" : "none" }}>
-          <MyToast show={this.state.show} message={"Product Deleted Successfully."} type={"danger"} />
-        </div>
         <Card className="border border-dark bg-dark text-white">
           <Card.Header>
             <FontAwesomeIcon icon={faList} />
-            <People></People> List
+            People List
           </Card.Header>
           <Card.Body>
             <Table striped bordered hover variant="dark">
               <thead>
                 <tr>
+                  <th>#</th>
                   <th>Name</th>
                   <th>Mass</th>
                   <th>Height</th>
                   <th>Gender</th>
                   <th>Homeworld</th>
-                  <th>Details</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -69,18 +69,20 @@ class ProductList extends React.Component {
                   </tr>
                 ) : (
                   this.state.people.map((people) => (
-                    <tr key={product.id}>
+                    <tr key={people.id}>
                       <td>{people.name}</td>
                       <td>{people.mass}</td>
                       <td>{people.height}</td>
                       <td>{people.gender}</td>
                       <td>{people.homeword}</td>
-                      <td>Details</td>
                       <td>
                         <ButtonGroup>
-                          <Link to={"details/" + product.id} className="btn btn-sm btn-outline-primary">
+                          <Link to={"details/" + people.id} className="btn btn-sm btn-outline-primary">
                             <FontAwesomeIcon icon={faEdit} />
                           </Link>{" "}
+                          <Button size="sm" variant="outline-danger" onClick={this.deleteProduct.bind(this, people.id)}>
+                            <FontAwesomeIcon icon={faTrash} />
+                          </Button>
                         </ButtonGroup>
                       </td>
                     </tr>
@@ -95,4 +97,4 @@ class ProductList extends React.Component {
   }
 }
 
-export default ProductList;
+export default People;
