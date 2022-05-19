@@ -8,25 +8,29 @@ import { useQuery, gql } from "@apollo/client";
 
 import { Link } from "react-router-dom";
 
-import { Card, Table, ButtonGroup, Button } from "react-bootstrap";
+import { Card, Table, ButtonGroup, Button, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const PEOPLE_QUERY = gql`
-  {
-    people {
-      name
-      mass
-      height
-      gender
-      homeword
+function People() {
+  const PEOPLE_QUERY = gql`
+    {
+      getPeople {
+        results {
+          url
+          name
+          mass
+          height
+          gender
+          homeword
+        }
+      }
     }
-  }
-`;
+  `;
 
+  const { loading, error, data } = useQuery(PEOPLE_QUERY);
 
-
-class People extends React.Component {
+  // class People extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,15 +38,21 @@ class People extends React.Component {
     };
   }
 
- 
+  //render() {
+  if (loading) {
+    return <Container>Loading...</Container>;
+  }
 
-  render() {
+  // if (error) {
+  //   return <Container>Error...</Container>;
+  // }
+  else {
     return (
-      <div>
+      <Container>
         <Card className="border border-dark bg-dark text-white">
           <Card.Header>
             <FontAwesomeIcon icon={faList} />
-            People List
+            PeopleList
           </Card.Header>
           <Card.Body>
             <Table striped bordered hover variant="dark">
@@ -64,7 +74,7 @@ class People extends React.Component {
                   </tr>
                 ) : (
                   this.state.people.map((people) => (
-                    <tr key={people.id}>
+                    <tr key={people.url}>
                       <td>{people.name}</td>
                       <td>{people.mass}</td>
                       <td>{people.height}</td>
@@ -72,7 +82,7 @@ class People extends React.Component {
                       <td>{people.homeword}</td>
                       <td>
                         <ButtonGroup>
-                          <Link to={"details/" + people.id} className="btn btn-sm btn-outline-primary">
+                          <Link to={"details/" + people.url} className="btn btn-sm btn-outline-primary">
                             <FontAwesomeIcon icon={faEdit} />
                           </Link>{" "}
                           <Button size="sm" variant="outline-danger" onClick={this.deleteProduct.bind(this, people.id)}>
@@ -87,7 +97,7 @@ class People extends React.Component {
             </Table>
           </Card.Body>
         </Card>
-      </div>
+      </Container>
     );
   }
 }
