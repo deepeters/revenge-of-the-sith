@@ -10,7 +10,7 @@ class Footer extends React.Component {
       <Navbar fixed="bottom" bg="dark" variant="dark">
         <Container>
           <Col lg={12} className="text-center text-muted">
-            <div> {fullYear} - All Rights Reserved by Somebody Important</div>
+            <div> {fullYear} - All Rights Reserved by Darth Vader</div>
           </Col>
         </Container>
       </Navbar>

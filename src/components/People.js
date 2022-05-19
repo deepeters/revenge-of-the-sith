@@ -24,7 +24,7 @@ const PEOPLE_QUERY = gql`
   }
 `;
 
-const { data, loading, error } = useQuery(PEOPLE_QUERY);
+
 
 class People extends React.Component {
   constructor(props) {
@@ -34,12 +34,7 @@ class People extends React.Component {
     };
   }
 
-  if(loading) {
-    return "Loading...";
-  }
-  if(error) {
-    return <pre>{error.message}</pre>;
-  }
+ 
 
   render() {
     return (
