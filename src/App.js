@@ -11,7 +11,7 @@ import Person from "./components/Person";
 import People from "./components/People";
 
 const client = new ApolloClient({
-  uri: "https://revenge-of-the-sith.hasura.app/v1/graphql",
+  uri: "https://quick-catfish-88.hasura.app/v1/graphql",
   cache: new InMemoryCache(),
 });
 
