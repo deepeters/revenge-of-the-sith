@@ -53,7 +53,7 @@ function People() {
                     <th>Height</th>
                     <th>Gender</th>
                     <th>Homeworld</th>
-                    <th>URL</th>
+                    {/* <th>URL</th> */}
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -70,7 +70,7 @@ function People() {
                     <td>{height}</td>
                     <td>{gender}</td>
                     <td>{homeworld}</td>
-                    <td>{url}</td>
+                    {/* <td>{url}</td> */}
                     <td>
                       <ButtonGroup>
                         <Link to={`/person/${name}`} className="btn btn-sm btn-outline-primary">
