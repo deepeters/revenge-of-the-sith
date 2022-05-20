@@ -21,7 +21,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const httpLink = createHttpLink({
-  uri: "https://the-force-awakens.hasura.app/v1/graphqll",
+  uri: "https://the-force-awakens.hasura.app/v1/graphql",
 });
 
 const client = new ApolloClient({

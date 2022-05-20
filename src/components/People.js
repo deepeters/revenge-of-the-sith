@@ -16,12 +16,12 @@ const PEOPLE_QUERY = gql`
   query MyQuery {
     getPeople {
       results {
-        url
-        name
-        mass
-        homeworld
-        height
         gender
+        height
+        homeworld
+        mass
+        name
+        url
       }
     }
   }
