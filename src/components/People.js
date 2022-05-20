@@ -36,56 +36,55 @@ function People() {
         <FontAwesomeIcon icon={faList} />
         <span> PeopleList</span>
       </Card.Header>
-      {peopleData.getPeople.results.map(({ url, name, mass, homeworld, height, gender }) => (
-        <div key={name}>
-          <Card className="border border-dark bg-dark text-white">
-            <Card.Body>
-              <Table striped bordered hover variant="dark">
-                <thead>
-                  <tr>
-                    {/* <th>#</th> */}
-                    <th>Name</th>
-                    <th>Mass</th>
-                    <th>Height</th>
-                    <th>Gender</th>
-                    <th>Homeworld</th>
-                    {/* <th>URL</th> */}
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* {this.state.people.length === 0 ? (
+
+      <Card className="border border-dark bg-dark text-white">
+        <Card.Body>
+          <Table striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                {/* <th>#</th> */}
+                <th>Name</th>
+                <th>Mass</th>
+                <th>Height</th>
+                <th>Gender</th>
+                <th>Homeworld</th>
+                {/* <th>URL</th> */}
+                <th>Actions</th>
+              </tr>
+            </thead>
+            {peopleData.getPeople.results.map(({ url, name, mass, homeworld, height, gender }) => (
+              <tbody key={name}>
+                {/* {this.state.people.length === 0 ? (
                 <tr align="center">
                   <td colSpan="6"> No People Available</td>
                 </tr>
               ) : (
                 this.state.people.map((people) => ( */}
-                  <tr key={name}>
-                    <td>{name}</td>
-                    <td>{mass}</td>
-                    <td>{height}</td>
-                    <td>{gender}</td>
-                    <td>{homeworld}</td>
-                    {/* <td>{url}</td> */}
-                    <td>
-                      <ButtonGroup>
-                        <Link to={`/person/${name}`} className="btn btn-sm btn-outline-primary">
-                          <FontAwesomeIcon icon={faArrowAltCircleRight} />
-                        </Link>{" "}
-                        {/* <Button size="sm" variant="outline-danger" onClick={this.deleteProduct.bind(this, people.id)}>
+                <tr key={name}>
+                  <td>{name}</td>
+                  <td>{mass}</td>
+                  <td>{height}</td>
+                  <td>{gender}</td>
+                  <td>{homeworld}</td>
+                  {/* <td>{url}</td> */}
+                  <td>
+                    <ButtonGroup>
+                      <Link to={`/person/${name}`} className="btn btn-sm btn-outline-primary">
+                        <FontAwesomeIcon icon={faArrowAltCircleRight} />
+                      </Link>{" "}
+                      {/* <Button size="sm" variant="outline-danger" onClick={this.deleteProduct.bind(this, people.id)}>
                           <FontAwesomeIcon icon={faTrash} />
                         </Button> */}
-                      </ButtonGroup>
-                    </td>
-                  </tr>
-                  {/* ))
+                    </ButtonGroup>
+                  </td>
+                </tr>
+                {/* ))
               )} */}
-                </tbody>
-              </Table>
-            </Card.Body>
-          </Card>
-        </div>
-      ))}
+              </tbody>
+            ))}
+          </Table>
+        </Card.Body>
+      </Card>
     </>
   );
 }
