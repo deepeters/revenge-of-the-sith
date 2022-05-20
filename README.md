@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Revenge of the Sith
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React Client Application designed to consume a GraphQL Star Wars API hosted on Hasura Cloud. The Application uses Apollo Client a comprehensive GraphQL library to fetch remote data and manage the data locally both through an internal cache as well as an entire state management API. The name of the application follows Star Wars Episode III - Revenge of the Sith, the best of them all.
 
-## Available Scripts
+<img src="images/star-wars-people.png">
 
-In the project directory, you can run:
+## Setup Instructions
 
-### `npm start`
+To set up the application locally you need both a backend and a frontend.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Using Hasura, a number of actions have been defined. For example, to get all people:
 
-### `npm test`
+The Action Defination is
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+type Query {
+getPeople: People
+}
 
-### `npm run build`
+The Type Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+type People {
+results: Person!
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+type Person {
+url: String!
+name: String
+mass: String
+homeworld: String
+height: String
+gender: String
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+And the Webhook supplied:
 
-### `npm run eject`
+https://swapi.dev/api/people/
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Frontend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ReactJS was used to build the user interface for the web application to handle the view layer.
+ReactJS makes dynamic web pages and also allows for reusable components. To set the frontend of this application.
+To run the application locally and after creating the GraphQL queries;
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- npx-react-app supermatt-frontend
+- npm install react-bootstrap bootstrap
+- npm install --save react-router-dom
+- npm i --save @fortawesome/fontawesome-svg-core
+- npm install --save @fortawesome/free-solid-svg-icons
+- npm install --save @fortawesome/react-fontawesome
+- npm install axios
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<img src="images/star-wars-person.png">
 
-## Learn More
+## BDD
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Hasura
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Hasura Cloud is a fully managed, production ready GraphQL API as a service to aid in the development of faster modern applications. The platform assures performance, security & reliability requirements of the API.
 
-### Code Splitting
+Hasure also has a Launch Console called GraphiQL that provides a platform to fetch data with the help of queries. A query is a GraphQL Operation that allows you to retrieve specific data from the server. For example in our application:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+query MyQuery {
+getPeople {
+results {
+name
+url
+}
+}
+}
 
-### Analyzing the Bundle Size
+This query performs a POST request to GraphQL which in turn refers to the actions defined to perform a precise GET request of precisely the name and the URL requested in the Query. This is unlike making a GET directly to the API in that it filters the data to provide only the data required.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### GraphQL
 
-### Making a Progressive Web App
+## Future Modifications
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Note: this application used Hasura free subscription that limits the number of calls to `sixty`, in one day!**
 
-### Advanced Configuration
+One huge modification would be to find an open source alternative to Hasura. Initially the idea was run the GraphQL logic locally from a Java Spring Application ([Failed Attempt 1](https://github.com/deepeters/the-force-api), [Failed Attempt 2](https://github.com/deepeters/the-force-awakens)) but a future modification would be to build a working local backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Technologies, Libraries and Frameworks Used
 
-### Deployment
+    - React Javascript
+    - Hasura Cloud
+    - Hasura GraphiQL Console
+    - Apollo Client
+    - Heroku Deploy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### LICENSE: [MIT LICENSE](https://raw.githubusercontent.com/deepeters/revenge-of-the-sith/master/LICENSE)
