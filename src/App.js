@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 import { Container, Row } from "react-bootstrap";
 import NavigationBar from "./components/NavigationBar";
@@ -10,8 +11,21 @@ import Footer from "./components/Footer";
 import Person from "./components/Person";
 import People from "./components/People";
 
+const authLink = setContext((_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      "x-hasura-admin-secret": "sK6ke1vpFGW1nm0tKybeqc0qCDG3ouhcl2wSsU9Q0FAgjSpOqt2qqViM2ZZSgXHO",
+    },
+  };
+});
+
+const httpLink = createHttpLink({
+  uri: "https://the-force-awakens.hasura.app/v1/graphqll",
+});
+
 const client = new ApolloClient({
-  uri: "https://quick-catfish-88.hasura.app/v1/graphql",
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
