@@ -15,7 +15,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      "x-hasura-admin-secret": "sK6ke1vpFGW1nm0tKybeqc0qCDG3ouhcl2wSsU9Q0FAgjSpOqt2qqViM2ZZSgXHO",
+      "x-hasura-admin-secret": "9chUOpqoidro3nq37SuAMfYxAFUos3sEcgmqCQDaN6x7GbPwxNdFMSc7yLdfEfEK",
     },
   };
 });
