@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import MyToast from "./MyToast";
-
-import axios from "axios";
-
 import { useQuery, gql } from "@apollo/client";
 
 import { Link } from "react-router-dom";
 
-import { Card, Table, ButtonGroup, Button, Container } from "react-bootstrap";
+import { Card, Table, ButtonGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faList, faEdit, faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 
 const PEOPLE_QUERY = gql`
   query MyQuery {
@@ -74,7 +70,7 @@ function People() {
                     <td>
                       <ButtonGroup>
                         <Link to={`/person/${name}`} className="btn btn-sm btn-outline-primary">
-                          <FontAwesomeIcon icon={faEdit} />
+                          <FontAwesomeIcon icon={faArrowAltCircleRight} />
                         </Link>{" "}
                         {/* <Button size="sm" variant="outline-danger" onClick={this.deleteProduct.bind(this, people.id)}>
                           <FontAwesomeIcon icon={faTrash} />

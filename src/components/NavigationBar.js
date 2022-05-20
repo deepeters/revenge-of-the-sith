@@ -22,8 +22,8 @@ class NavigationBar extends React.Component {
           <Link to={"/list"} className="nav-link">
             People
           </Link>
-          <Link to={"/add"} className="nav-link">
-            Person
+          <Link to={"/page"} className="nav-link">
+            People/Page
           </Link>
         </Nav>
       </Navbar>
