@@ -14,24 +14,24 @@ Using Hasura, a number of actions have been defined. For example, to get all peo
 
 The Action Defination is
 
-type Query {
-getPeople: People
-}
+    type Query {
+    getPeople: People
+    }
 
 The Type Configuration
 
-type People {
-results: Person!
-}
+    type People {
+    results: Person!
+    }
 
-type Person {
-url: String!
-name: String
-mass: String
-homeworld: String
-height: String
-gender: String
-}
+    type Person {
+    url: String!
+    name: String
+    mass: String
+    homeworld: String
+    height: String
+    gender: String
+    }
 
 And the Webhook supplied:
 
@@ -61,14 +61,14 @@ Hasura Cloud is a fully managed, production ready GraphQL API as a service to ai
 
 Hasure also has a Launch Console called GraphiQL that provides a platform to fetch data with the help of queries. A query is a GraphQL Operation that allows you to retrieve specific data from the server. For example in our application:
 
-query MyQuery {
-getPeople {
-results {
-name
-url
-}
-}
-}
+    query MyQuery {
+    getPeople {
+    results {
+    name
+    url
+    }
+    }
+    }
 
 This query performs a POST request to GraphQL which in turn refers to the actions defined to perform a precise GET request of precisely the name and the URL requested in the Query. This is unlike making a GET directly to the API in that it filters the data to provide only the data required.
 
