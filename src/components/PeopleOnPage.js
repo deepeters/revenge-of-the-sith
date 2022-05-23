@@ -41,7 +41,7 @@ function PeopleOnPage() {
   return (
     <>
       <Card.Header className="text-white">
-        <FontAwesomeIcon icon={faSmile} />
+        <FontAwesomeIcon icon={faList} />
         <span> People on Page </span>
       </Card.Header>
 
