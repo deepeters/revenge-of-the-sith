@@ -19,10 +19,10 @@ class NavigationBar extends React.Component {
           <Link to={""} className="nav-link">
             Home
           </Link>
-          <Link to={"/list"} className="nav-link">
+          <Link to={"/people"} className="nav-link">
             People
           </Link>
-          <Link to={"/page"} className="nav-link">
+          <Link to={"/peopleonpage"} className="nav-link">
             People/Page
           </Link>
         </Nav>

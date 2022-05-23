@@ -10,6 +10,7 @@ import Welcome from "./components/Welcome";
 import Footer from "./components/Footer";
 import Person from "./components/Person";
 import People from "./components/People";
+import PeopleOnPage from "./components/PeopleOnPage";
 
 const authLink = setContext((_, { headers }) => {
   return {
@@ -42,8 +43,9 @@ function App() {
           <Row>
             <Switch>
               <Route path="/" exact component={Welcome} />
-              <Route path="/details" exact component={Person} />
-              <Route path="/list" exact component={People} />
+              <Route path="/person" exact component={Person} />
+              <Route path="/people" exact component={People} />
+              <Route path="/peopleonpage" exact component={PeopleOnPage} />
             </Switch>
           </Row>
         </Container>
