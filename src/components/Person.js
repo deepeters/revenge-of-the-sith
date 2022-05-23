@@ -82,13 +82,18 @@ function Person() {
           </Table>
         </Card.Body>
         <Card.Footer style={{ textAlign: "right" }}>
-          <Button size="sm" variant="info" type="reset">
-            <FontAwesomeIcon icon={faUndo} />
-            Home
-          </Button>{" "}
-          <Button size="sm" variant="info" type="button" onClick={this.peopleData.bind()}>
-            <FontAwesomeIcon icon={faList} /> People List
-          </Button>
+          <ButtonGroup>
+            <Link to={`/`} className="btn btn-sm btn-outline-primary">
+              {" "}
+              Home
+              <FontAwesomeIcon icon={faArrowAltCircleRight} />
+            </Link>{" "}
+            <Link to={`/people`} className="btn btn-sm btn-outline-primary">
+              {" "}
+              People List
+              <FontAwesomeIcon icon={faArrowAltCircleRight} />
+            </Link>
+          </ButtonGroup>
         </Card.Footer>
       </Card>
     </>

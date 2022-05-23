@@ -11,7 +11,7 @@ import { faList, faSmile, faArrowAltCircleLeft, faUndo } from "@fortawesome/free
 
 const PAGE_QUERY = gql`
   query getPage($page: Int!) {
-    people (page: $page) {
+    people(page: $page) {
       results {
         url
         name
@@ -30,7 +30,7 @@ function PeopleOnPage() {
     error,
     data: peoplePageData,
   } = useQuery(PAGE_QUERY, {
-    variables: { name },
+    variables: { page },
   });
 
   const { name } = useParams();
@@ -61,7 +61,7 @@ function PeopleOnPage() {
               </tr>
             </thead>
             {peoplePageData.getPage.results.map(({ url, name, mass, homeworld, height, gender }) => (
-              <tbody key={name}>
+              <tbody key={page}>
                 <tr key={name}>
                   <td>{name}</td>
                   <td>{mass}</td>
@@ -69,26 +69,31 @@ function PeopleOnPage() {
                   <td>{gender}</td>
                   <td>{homeworld}</td>
                   {/* <td>{url}</td> */}
-                  {/* <td>
+                  <td>
                     <ButtonGroup>
                       <Link to={`/person/${name}`} className="btn btn-sm btn-outline-primary">
                         <FontAwesomeIcon icon={faArrowAltCircleRight} />
                       </Link>{" "}
                     </ButtonGroup>
-                  </td> */}
+                  </td>
                 </tr>
               </tbody>
             ))}
           </Table>
         </Card.Body>
         <Card.Footer style={{ textAlign: "right" }}>
-          <Button size="sm" variant="info" type="reset">
-            <FontAwesomeIcon icon={faUndo} />
-            Home
-          </Button>{" "}
-          <Button size="sm" variant="info" type="button" onClick={this.peopleData.bind()}>
-            <FontAwesomeIcon icon={faList} /> People List
-          </Button>
+          <ButtonGroup>
+            <Link to={`/`} className="btn btn-sm btn-outline-primary">
+              {" "}
+              Home
+              <FontAwesomeIcon icon={faArrowAltCircleRight} />
+            </Link>{" "}
+            <Link to={`/people`} className="btn btn-sm btn-outline-primary">
+              {" "}
+              People List
+              <FontAwesomeIcon icon={faArrowAltCircleRight} />
+            </Link>
+          </ButtonGroup>
         </Card.Footer>
       </Card>
     </>
