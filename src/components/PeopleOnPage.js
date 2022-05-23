@@ -33,7 +33,7 @@ function PeopleOnPage() {
     variables: { page },
   });
 
-  const { name } = useParams();
+  const { page } = useParams();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
