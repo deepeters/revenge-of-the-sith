@@ -11,7 +11,7 @@ import { faList, faSmile, faArrowAltCircleLeft, faUndo } from "@fortawesome/free
 
 const PAGE_QUERY = gql`
   query getPage($page: Int!) {
-    getPage(page: $page) {
+    people (page: $page) {
       results {
         url
         name
